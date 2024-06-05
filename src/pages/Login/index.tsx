@@ -4,8 +4,10 @@ import Input from "../../components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+
 import { Container, LoginContainer, Column, Spacing, Title } from "./styles";
 import { defaultValues, IFormLogin } from "./types";
+
 
 const schema = yup
   .object({
@@ -17,18 +19,26 @@ const schema = yup
   })
   .required();
 
+
+
 const Login = () => {
+
+
+
   const {
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid},
   } = useForm<IFormLogin>({
     resolver: yupResolver(schema),
     mode: "onBlur",
     defaultValues,
     reValidateMode: "onChange",
   });
+  
 
-  return (
+
+  return (  
+    
     <Container>
       <LoginContainer>
         <Column>
@@ -47,13 +57,18 @@ const Login = () => {
             placeholder="Senha"
             control={control}
             errorMessage={errors?.password?.message}
+          
           />
           <Spacing />
-          <Button title="Entrar" />
+
+         <Button disabled={!isValid} title="oi" />
         </Column>
       </LoginContainer>
     </Container>
   );
 };
 
-export default Login;
+
+
+
+export default Login
